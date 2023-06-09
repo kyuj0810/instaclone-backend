@@ -1,0 +1,13 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// 데이터소스가 prisma에게 데이터베이스의 주소(URL)와 종류(Provider)에 대해 알려줌.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// clien는 기본적으로 '어떤 방식으로 데이터베이스와 상호작용하는가'임
+generator client {
+  provider = "prisma-client-js"
+}
