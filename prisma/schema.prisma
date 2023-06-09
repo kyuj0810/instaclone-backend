@@ -11,3 +11,15 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+// Prisma Migrate 는 이 schema.prisma파일의 데이터모델을 쓰고 설명할 수 있게 해줌.
+// @id : 모델의 id임을 증명
+// @updatedAt : movie를 저장할 때마다 매번 날짜를 저장하게 됨.
+model Movie {
+  id        Int      @id @default(autoincrement())
+  title     String
+  year      Int
+  genre     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
