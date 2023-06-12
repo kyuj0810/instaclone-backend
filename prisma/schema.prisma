@@ -1,25 +1,22 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// 데이터소스가 prisma에게 데이터베이스의 주소(URL)와 종류(Provider)에 대해 알려줌.
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// clien는 기본적으로 '어떤 방식으로 데이터베이스와 상호작용하는가'임
-generator client {
-  provider = "prisma-client-js"
-}
-
-// Prisma Migrate 는 이 schema.prisma파일의 데이터모델을 쓰고 설명할 수 있게 해줌.
-// @id : 모델의 id임을 증명
-// @updatedAt : movie를 저장할 때마다 매번 날짜를 저장하게 됨.
-model Movie {
+model User {
   id        Int      @id @default(autoincrement())
-  title     String
-  year      Int
-  genre     String?
+  firstName String
+  lastName  String?
+  username  String   @unique
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
