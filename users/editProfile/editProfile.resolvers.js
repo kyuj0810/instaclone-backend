@@ -12,16 +12,17 @@ export default {
         uglyPassword = await bcrypt.hash(newPassword, 10);
       }
       const updatedUser = await client.user.update({
-        where: { id: 1 },
+        where: {
+          id: 1,
+        },
         data: {
           firstName,
           lastName,
           username,
           email,
-          ..._(uglyPassword && { password: uglyPassword }),
+          ...(uglyPassword && { password: uglyPassword }),
         },
       });
-
       if (updatedUser.id) {
         return {
           ok: true,
@@ -29,7 +30,7 @@ export default {
       } else {
         return {
           ok: false,
-          error: 'Could not updated profile.',
+          error: 'Could not update profile.',
         };
       }
     },
