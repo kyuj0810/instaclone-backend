@@ -5,6 +5,10 @@ import schema from './schema';
 
 const server = new ApolloServer({
   schema,
+  context: {
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg3MTUwNTgxfQ.9tnUoDQVkuE3pJt1MusjTY54P6EvLSAvVthdzJ2LMWs',
+  },
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
