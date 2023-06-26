@@ -1,24 +1,24 @@
 require('dotenv').config();
-import { ApolloServer, gql } from 'apollo-server';
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import schema from './schema';
+import { ApolloServer } from 'apollo-server';
+import { typeDefs, resolvers } from './schema';
 import { getUser, protectResolver } from './users/users.utils';
 
+const PORT = process.env.PORT;
 const server = new ApolloServer({
-  schema,
+  resolvers,
+  typeDefs,
   context: async ({ req }) => {
     return {
       loggedInUser: await getUser(req.headers.token),
       protectResolver,
     };
   },
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
-
-const PORT = process.env.PORT;
 
 server
   .listen(PORT)
   .then(() =>
-    console.log(`Server is running apollo-server http://localhost:${PORT}/`)
+    console.log(
+      `🚀 Server is running apollo-server http://localhost:${PORT}/ ✅`
+    )
   );
