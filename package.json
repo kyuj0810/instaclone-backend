@@ -23,7 +23,7 @@
     "@graphql-tools/merge": "^9.0.0",
     "@graphql-tools/schema": "^10.0.0",
     "@prisma/client": "^3.5.0-integration-fix-bundlers-broken-require.2",
-    "apollo-server": "^2.19.1",
+    "apollo-server": "^3.7.0",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.1.4",
