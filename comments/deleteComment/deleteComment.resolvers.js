@@ -15,7 +15,7 @@ export default {
       if (!comment) {
         return {
           ok: false,
-          error: 'Comment not found',
+          error: 'Comment not found.',
         };
       } else if (comment.userId !== loggedInUser.id) {
         return {
