@@ -24,15 +24,15 @@ Instaclone Backend.
 - [x] Edit Photo
 - [x] Like / Unlike Photo
 - [x] See Photo Likes
-- [ ] See Photo Comments
 - [x] See Feed
-- [ ] Is Mine (Delete Photo)
+- [x] See Photo Comments
+- [x] Delete Photo
 
 ## Comments
 
-- [ ] Comment on Photo
+- [x] Comment on Photo
+- [x] Delete Comment
 - [ ] Edit Comment
-- [ ] Delete Comment (Is Mine)
 
 ## Extras
 
