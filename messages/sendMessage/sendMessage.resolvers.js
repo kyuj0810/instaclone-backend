@@ -6,6 +6,7 @@ export default {
     sendMessage: protectedResolver(
       async (_, { payload, roomId, userId }, { loggedInUser }) => {
         let room = null;
+
         if (userId) {
           const user = await client.user.findUnique({
             where: {
@@ -21,6 +22,7 @@ export default {
               error: 'This user does not exist.',
             };
           }
+
           room = await client.room.create({
             data: {
               users: {
@@ -51,6 +53,7 @@ export default {
             };
           }
         }
+
         await client.message.create({
           data: {
             payload,
@@ -58,10 +61,10 @@ export default {
               connect: {
                 id: room.id,
               },
-              user: {
-                connect: {
-                  id: loggedInUser.id,
-                },
+            },
+            user: {
+              connect: {
+                id: loggedInUser.id,
               },
             },
           },
