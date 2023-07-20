@@ -1,3 +1,4 @@
+import e from 'express';
 import client from '../client';
 
 export default {
@@ -9,6 +10,22 @@ export default {
           roomId: id,
         },
       }),
-    unreadTotal: () => 0,
+    unreadTotal: ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return 0;
+      } else {
+        client.message.count({
+          where: {
+            read: false,
+            roomId: id,
+            user: {
+              id: {
+                not: loggedInUser.id,
+              },
+            },
+          },
+        });
+      }
+    },
   },
 };
