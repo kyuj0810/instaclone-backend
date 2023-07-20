@@ -13,13 +13,30 @@ const apollo = new ApolloServer({
   resolvers,
   typeDefs,
   uploads: false,
-  context: async ({ req }) => {
-    if (req) {
+  context: async (ctx) => {
+    if (ctx.req) {
       return {
-        loggedInUser: await getUser(req.headers.token),
+        loggedInUser: await getUser(ctx.req.headers.token),
         protectResolver,
       };
+    } else {
+      const {
+        connection: { context },
+      } = ctx;
+      return {
+        loggedInUser: context.loggedInUser,
+      };
     }
+  },
+  subscriptions: {
+    //connectionParams는 기본적으로 우리가 볼 수 있는 HTTP headers.(user가 connect를 시도 할 때만!오직 딱 한 번 발생)
+    onConnect: async ({ token }) => {
+      if (!token) {
+        throw new Error("You can't listen.");
+      }
+      const loggedInUser = await getUser(token);
+      return { loggedInUser };
+    },
   },
 });
 
