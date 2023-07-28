@@ -36,7 +36,8 @@
     "graphql-tools": "^7.0.2",
     "graphql-upload": "^11.0.0",
     "jsonwebtoken": "^9.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",

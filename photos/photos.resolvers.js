@@ -17,8 +17,9 @@ export default {
     totalComments: ({ id }) => client.comment.count({ where: { photoId: id } }),
     comments: ({ id }) =>
       client.comment.findMany({
-        where: {
-          photoId: id,
+        where: { photoId: id },
+        include: {
+          user: true,
         },
       }),
     isMine: ({ userId }, _, { loggedInUser }) => {
