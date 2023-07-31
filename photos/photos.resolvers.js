@@ -14,7 +14,7 @@ export default {
         },
       }),
     likes: ({ id }) => client.like.count({ where: { photoId: id } }),
-    totalComments: ({ id }) => client.comment.count({ where: { photoId: id } }),
+    commentNumber: ({ id }) => client.comment.count({ where: { photoId: id } }),
     comments: ({ id }) =>
       client.comment.findMany({
         where: { photoId: id },
