@@ -6,7 +6,6 @@ import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from './schema';
 import { getUser, protectResolver } from './users/users.utils';
 import { graphqlUploadExpress } from 'graphql-upload';
-import pubsub from './pubsub';
 
 const PORT = process.env.PORT;
 const apollo = new ApolloServer({
